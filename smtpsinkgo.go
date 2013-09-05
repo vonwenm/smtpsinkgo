@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	listener, err := net.Listen("tcp", ":21")
+	listener, err := net.Listen("tcp", ":25")
 
 	if err != nil {
 		// handle error
