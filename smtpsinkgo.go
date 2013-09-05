@@ -11,6 +11,8 @@ func main() {
 		// handle error
 	}
 
+	defer listener.Close()
+
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
@@ -23,5 +25,11 @@ func main() {
 }
 
 func handleSMTPConnection(conn net.Conn) {
-	conn.Close()
+	defer conn.Close()
+
+	_, err := conn.Write([]byte("250 localhost ESMTP service ready\r\n"))
+	if err != nil {
+		// handle error
+		return
+	}
 }
